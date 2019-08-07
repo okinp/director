@@ -1,0 +1,16 @@
+@mixin grid {
+  display: grid;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1580px;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(min-content, max-content);
+  grid-gap: 40px;
+  column-gap: 40px;
+}
+
+@mixin in-mobile {
+  @media screen and (max-width: $mobile-breakpoint) {
+    @content;
+  }
+}
