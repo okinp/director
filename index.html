@@ -10,54 +10,73 @@
 </head>
 
 <body>
-  <header>
-    <i class="icon-logo"></i>
-    
-    <!-- <img src="/images/logo.svg" /> -->
-    <label for="burger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </label>
-    <input id="burger" type="checkbox">
+  <header>    
+    <img class="logo" src="/images/logo.svg" />
+    <div class="header__tools">
+      <a href="#" class="language-switcher">FR</a>
+      <div class="burger-button" for="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="close">close</span>
+      </div>
+    </div>
     <nav>
       <ul class="navlist">
-        <li class="navlist__item is--active">
-          <a class="navlist__item__content">
-            <span>Home</span>
+        <li class="navlist__item">
+          <a href='#' class="navlist__item__content">
+            Home
           </a>
         </li>
         <li class="navlist__item">
-          <a class="navlist__item__content">
-            <span>About</span>
+          <a href='#' class="navlist__item__content">
+            About
           </a>
         </li>
         <li class="navlist__item">
-          <a class="navlist__item__content">
-            <span>Work</span>
+          <a href='#' class="navlist__item__content">
+            Work
           </a>
           <ul>
-            <li>Commercial</li>
-            <li>Documentaries</li>
-            <li>Narrative</li>
-            <li>Music Videos</li>
+            <li><a href='#'>Commercial</a></li>
+            <li><a href='#'>Documentaries</a></li>
+            <li><a href='#'>Narrative</a></li>
+            <li><a href='#'>Music Videos</a></li>
           </ul>
         </li>
         <li class="navlist__item">
-          <a class="navlist__item__content">
-            <span>Get Inspired</span>
+          <a href='#' class="navlist__item__content">
+            Get Inspired
           </a>
         </li>
         <li class="navlist__item">
-          <a class="navlist__item__content">
-            <span>Contact</span>
+          <a href='#' class="navlist__item__content">
+            Contact
           </a>
+        </li>
+      </ul>
+      <ul class="terms">
+        <li>
+          <a href="#">terms & conditions</a>
+        </li>
+        <li>
+          <a href="#">privacy policy</a>
         </li>
       </ul>
     </nav>
   </header>
   <section class="intro">
+    <div class="content">
 
+    </div>
+    <div class="bottom-bar">
+      <a class="expand">
+        <i class="icon-expand"></i>
+      </a>
+      <a class="scroll-down">
+        scroll down
+      </a>
+    </div>
   </section>
   <section class="portfolio">
 

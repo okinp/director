@@ -9,8 +9,30 @@
   column-gap: 40px;
 }
 
-@mixin in-mobile {
-  @media screen and (max-width: $mobile-breakpoint) {
-    @content;
+
+
+@mixin media( $res ) {
+  @if mobile == $res {
+	@media only screen and (max-width: $tablet -1) {
+	  @content;
+	}
+  }
+
+  @if tablet == $res {
+	@media only screen and (min-width: $tablet) {
+	  @content;
+	}
+  }
+
+  @if desktop == $res {
+	@media only screen and (min-width: $desktop) {
+	  @content;
+	}
+  }
+
+  @if wide == $res {
+	@media only screen and (min-width: $wide) {
+	  @content;
+	}
   }
 }
