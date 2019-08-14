@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "N. Psaroudakis",
   "scripts": {
-    "start": "webpack-dev-server --host localhost --port 8070 --config webpack.development.js --open",
+    "start": "webpack-dev-server --host localhost --port 8080 --config webpack.development.js --open",
     "build": "webpack --config webpack.production.js"
   },
   "devDependencies": {
@@ -32,6 +32,13 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.3",
-    "animateplus": "^2.1.1"
+    "@glidejs/glide": "^3.3.0",
+    "animateplus": "^2.1.1",
+    "gsap": "^2.1.3",
+    "hammerjs": "^2.0.8",
+    "lodash": "^4.17.15",
+    "rellax": "^1.10.0",
+    "swiper": "^4.5.0",
+    "zingtouch": "^1.0.6"
   }
 }

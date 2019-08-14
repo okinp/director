@@ -9,6 +9,13 @@
   column-gap: 40px;
 }
 
+@mixin cursor {
+    cursor: url("/images/cursor.png") 27 27, auto;
+}
+
+@mixin text-outline($color: black, $width: 1px){
+  text-shadow: (-$width) 0 $color, 0 $width $color, $width 0 $color, 0 (-$width) $color;
+}
 
 
 @mixin media( $res ) {
