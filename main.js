@@ -8,7 +8,7 @@ import * as PIXI from "pixi.js";
 import { TweenMax } from "gsap/TweenMax";
 import { ScrollToPlugin, PixiPlugin } from "gsap/all";
 const gsapPlugins = [PixiPlugin, ScrollToPlugin];
-gsapPlugins[0].registerPIXI(PIXI);
+
 import "css/main-entry";
 import "fonts/icomoon/style";
 import "images/logo.svg";
@@ -17,6 +17,8 @@ import "images/project1.jpg";
 import "images/project2.jpg";
 import "images/project3.jpg";
 import "images/cv.jpg";
+
+gsapPlugins[0].registerPIXI(PIXI);
 
 //
 const el = {
@@ -109,6 +111,11 @@ pixify(".project-card > span ").then(pixiArray => {
     spaceBetween: 200
   });
 
+  // TweenMax.to(pixiApps[0].stage.children[0].filters, 0.2, [
+  //   disabledRGBSplitFilterParams,
+  //   disabledOldFilmFilterParams
+  // ]);
+
   let track = el.portfolio.counter.track;
   let slideIndex = 1;
   let current = 0;
@@ -123,17 +130,29 @@ pixify(".project-card > span ").then(pixiArray => {
   el.portfolio.counter.stop.innerHTML = `0${numSlides}`;
   const movingFilterParams = filterParams;
 
-  const disabledFilterParams = {
+  const disabledOldFilmFilterParams = {
     noise: 0,
     scratchDensity: 0,
     noiseSize: 0
   };
 
-  const enabledFilterParams = {
+  const enabledOldFilmFilterParams = {
     noise: 0.23,
     scratchDensity: 3.67,
     noiseSize: 0.16,
     sepia: 0
+  };
+
+  const disabledRGBSplitFilterParams = {
+    blue: [0, 0],
+    green: [0, 0],
+    red: [0, 0]
+  };
+
+  const enabledRGBSplitFilterParams = {
+    blue: [0, 0],
+    green: [0, 10],
+    red: [-10, 0]
   };
 
   swiper.on("progress", a => {
@@ -153,15 +172,15 @@ pixify(".project-card > span ").then(pixiArray => {
     console.log("after: ", current);
     el.portfolio.counter.start.innerHTML = `0${current + 1}`;
 
-    console.log(pixiApps[current].stage.children[0].filters[0]);
     TweenMax.to(
       pixiApps[current].stage.children[0].filters[0],
-      0.2,
-      disabledFilterParams
+      2,
+      disabledOldFilmFilterParams
     );
-    TweenMax.to(pixiApps[previous].stage.children[0].filters[0], 0.2, {
-      ...enabledFilterParams,
-      seed: Math.random() * Math.random()
+
+    TweenMax.to(pixiApps[previous].stage.children[0].filters[0], 2, {
+      ...enabledOldFilmFilterParams,
+      seed: Math.random()
     });
   });
 });

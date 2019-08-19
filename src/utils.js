@@ -1,4 +1,5 @@
 import { OldFilmFilter } from "@pixi/filter-old-film";
+import { RGBSplitFilter } from "@pixi/filter-rgb-split";
 import { Application, Container, Loader, Sprite, Ticker } from "pixi.js";
 
 const filterParams = {
