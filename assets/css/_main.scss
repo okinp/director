@@ -5,6 +5,9 @@
   user-select: none;
 }
 
+body {
+  background-color: black;
+}
 body.main {
   overflow: auto;
   @include grid;
@@ -14,7 +17,6 @@ body.fullscreen {
   overflow: hidden;
 }
 
-
-
 @import "navigation";
 @import "home";
+@import "footer";

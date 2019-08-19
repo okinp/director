@@ -32,12 +32,12 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.3",
-    "@glidejs/glide": "^3.3.0",
+    "@pixi/filter-old-film": "^3.0.3",
+    "@pixi/filter-rgb-split": "^3.0.3",
     "animateplus": "^2.1.1",
     "gsap": "^2.1.3",
-    "hammerjs": "^2.0.8",
     "lodash": "^4.17.15",
-    "rellax": "^1.10.0",
+    "pixi.js": "^5.1.1",
     "swiper": "^4.5.0",
     "zingtouch": "^1.0.6"
   }

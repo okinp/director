@@ -1,5 +1,6 @@
 const merge = require("webpack-merge");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const common = require("./webpack.common");
 
 module.exports = merge(common(), {
@@ -16,6 +17,9 @@ module.exports = merge(common(), {
         preset: ["default", { discardComments: { removeAll: true } }]
       },
       canPrint: true
+    }),
+    new HtmlWebpackPlugin({
+      template: "index.html"
     })
   ]
 });

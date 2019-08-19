@@ -40,7 +40,10 @@ module.exports = () => ({
         test: /\.(s*)css$/,
         use: [
           {
-            loader: this.mode !== "production" ? "style-loader" : MiniCssExtractPlugin.loader
+            loader:
+              this.mode !== "production"
+                ? "style-loader"
+                : MiniCssExtractPlugin.loader
           },
           {
             loader: "css-loader", // translates CSS into CommonJS
@@ -52,7 +55,10 @@ module.exports = () => ({
           {
             loader: "postcss-loader", // translates CSS into CommonJS
             options: {
-              plugins: () => [require("postcss-import"), require("postcss-preset-env")],
+              plugins: () => [
+                require("postcss-import"),
+                require("postcss-preset-env")
+              ],
               sourceMap: "true"
             }
           },
@@ -73,7 +79,10 @@ module.exports = () => ({
           {
             loader: "file-loader",
             options: {
-              name: this.mode === "development" ? "[name]-[hash].[ext]" : "[name].[ext]",
+              name:
+                this.mode === "development"
+                  ? "[name]-[hash].[ext]"
+                  : "[name].[ext]",
               outputPath: "fonts/"
             }
           }
@@ -86,7 +95,10 @@ module.exports = () => ({
           {
             loader: "file-loader",
             options: {
-              name: this.mode === "development" ? "[name]-[hash].[ext]" : "[name].[ext]",
+              name:
+                this.mode === "development"
+                  ? "[name]-[hash].[ext]"
+                  : "[name].[ext]",
               outputPath: "images/"
             }
           }
@@ -96,8 +108,10 @@ module.exports = () => ({
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: this.mode === "development" ? "[name].css" : "[name].[hash].css",
-      chunkFilename: this.mode === "development" ? "[id].css" : "[id].[hash].css"
+      filename:
+        this.mode === "development" ? "[name].css" : "[name].[hash].css",
+      chunkFilename:
+        this.mode === "development" ? "[id].css" : "[id].[hash].css"
     })
   ]
 });
