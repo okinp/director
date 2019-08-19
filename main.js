@@ -2,9 +2,13 @@ import animate from "animateplus";
 import throttle from "lodash/throttle";
 import Swiper from "swiper";
 import { disableScroll, enableScroll } from "src/disableScroll";
-import { pixify, observeChanges, filterParams } from "src/utils";
+import { pixify, filterParams } from "src/utils";
 import movieTitlesScroll from "src/animations";
-
+import * as PIXI from "pixi.js";
+import { TweenMax } from "gsap/TweenMax";
+import { ScrollToPlugin, PixiPlugin } from "gsap/all";
+const gsapPlugins = [PixiPlugin, ScrollToPlugin];
+gsapPlugins[0].registerPIXI(PIXI);
 import "css/main-entry";
 import "fonts/icomoon/style";
 import "images/logo.svg";
@@ -13,6 +17,8 @@ import "images/project1.jpg";
 import "images/project2.jpg";
 import "images/project3.jpg";
 import "images/cv.jpg";
+
+//
 const el = {
   body: document.querySelector("body"),
   header: {
@@ -40,6 +46,7 @@ const el = {
     slides: [...document.querySelectorAll(".portfolio__item")]
   }
 };
+
 window.scrollTo(0, 0);
 let titleScroller = movieTitlesScroll(el.intro.rollingTitles, 5000);
 titleScroller.init();
@@ -94,61 +101,70 @@ el.intro.scrollDownButton.addEventListener("mousedown", evt => {
 
 let pixiApps = null;
 
-pixify(".project-card > span ")
-  .then(pixiArray => {
-    pixiApps = pixiArray;
-    const swiper = new Swiper(".portfolio__slider", {
-      slidesPerView: "auto",
-      centeredSlides: true,
-      spaceBetween: 200
-    });
+pixify(".project-card > span ").then(pixiArray => {
+  pixiApps = pixiArray;
+  const swiper = new Swiper(".portfolio__slider", {
+    slidesPerView: "auto",
+    centeredSlides: true,
+    spaceBetween: 200
+  });
 
-    let track = el.portfolio.counter.track;
-    let slideIndex = 1;
-    let numSlides = el.portfolio.slides.length;
+  let track = el.portfolio.counter.track;
+  let slideIndex = 1;
+  let current = 0;
+  let previous = 0;
+  let numSlides = el.portfolio.slides.length;
 
-    el.portfolio.counter.stop.innerHTML = `0${numSlides}`;
-    const movingFilterParams = filterParams;
-    const finsihedFilterParams = {
-      noise: 0,
-      scratchDensity: 0,
-      sepia: 0,
-      noiseSize: 0
-    };
-    swiper.on("progress", a => {
-      slideIndex = a * (numSlides - 1) + 1;
-      let width = track.clientWidth;
-      let gradientStop = (100 * (1 + (numSlides - 1) * a)) / numSlides;
-      track.style = ` background: linear-gradient(to right, #fbee30 ${gradientStop}%, #3b3b3b ${gradientStop}%);
+  let initFilter = pixiApps[0].stage.children[0].filters[0];
+  initFilter.noise = 0;
+  initFilter.scratchDensity = 0;
+  initFilter.noiseSize = 0;
+
+  el.portfolio.counter.stop.innerHTML = `0${numSlides}`;
+  const movingFilterParams = filterParams;
+
+  const disabledFilterParams = {
+    noise: 0,
+    scratchDensity: 0,
+    noiseSize: 0
+  };
+
+  const enabledFilterParams = {
+    noise: 0.23,
+    scratchDensity: 3.67,
+    noiseSize: 0.16,
+    sepia: 0
+  };
+
+  swiper.on("progress", a => {
+    let width = track.clientWidth;
+    let gradientStop = (100 * (1 + (numSlides - 1) * a)) / numSlides;
+    track.style = ` background: linear-gradient(to right, #fbee30 ${gradientStop}%, #3b3b3b ${gradientStop}%);
                       width: ${width}px;
                       height: 1px;`;
-      filterParams.noise = 0.65;
-      filterParams.scratchDensity = 0.3;
-      filterParams.sepia = 0.2;
-      filterParams.noiseSize = 0.2;
-    });
+  });
 
-    swiper.on("transitionEnd", () => {
-      slideIndex = Math.ceil(slideIndex);
-      el.portfolio.counter.start.innerHTML = `0${slideIndex}`;
-      filterParams.noise = 0;
-      filterParams.scratchDensity = 0;
-      filterParams.sepia = 0;
-      filterParams.noiseSize = 0;
-    });
-  })
-  .then(() => {
-    observeChanges(".portfolio__track", mutation => {
-      if (mutation.oldValue.includes("swiper-slide-active")) {
-        console.log("Remove: ", mutation);
-      } else if (
-        !mutation.oldValue.includes("swiper-slide-active") &&
-        mutation.target.classList.contains("swiper-slide-active")
-      ) {
-        console.log("Add: ", mutation);
-      }
+  swiper.on("transitionStart", function() {
+    previous = current;
+    current = this.activeIndex;
+  });
+
+  swiper.on("transitionEnd", function() {
+    console.log("after: ", current);
+    el.portfolio.counter.start.innerHTML = `0${current + 1}`;
+
+    console.log(pixiApps[current].stage.children[0].filters[0]);
+    TweenMax.to(
+      pixiApps[current].stage.children[0].filters[0],
+      0.2,
+      disabledFilterParams
+    );
+    TweenMax.to(pixiApps[previous].stage.children[0].filters[0], 0.2, {
+      ...enabledFilterParams,
+      seed: Math.random() * Math.random()
     });
   });
+});
 
 if (module.hot) {
   module.hot.accept();

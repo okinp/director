@@ -1,12 +1,11 @@
 import { OldFilmFilter } from "@pixi/filter-old-film";
 import { Application, Container, Loader, Sprite, Ticker } from "pixi.js";
-import { filter } from "minimatch";
 
 const filterParams = {
-  noise: 0.13,
-  scratchDensity: 1.67,
-  sepia: 0.4,
-  noiseSize: 0.3
+  noise: 0.23,
+  scratchDensity: 3.67,
+  noiseSize: 0.16,
+  sepia: 0
 };
 
 const createPixiInstance = function(elem) {
@@ -65,33 +64,4 @@ const pixify = function(selector) {
   return Promise.all(pixiPromises);
 };
 
-// const observer = new MutationObserver(mutations => {
-//   mutations.forEach(mutation => {
-//     const el = mutation.target;
-//     if (
-//       (!mutation.oldValue || !mutation.oldValue.match(/\bis-busy\b/)) &&
-//       (mutation.target.classList &&
-//         mutation.target.classList.contains("is-busy"))
-//     ) {
-//       alert("is-busy class added");
-//     }
-//   });
-// });
-
-function observer(fn) {
-  return new MutationObserver(mutations => {
-    mutations.forEach(fn);
-  });
-}
-
-const observeChanges = function(selector, fn) {
-  observer(fn).observe(document.querySelector(selector), {
-    attributes: true,
-    attributeOldValue: true,
-    attributeFilter: ["class"],
-    childList: true,
-    subtree: true
-  });
-};
-
-export { pixify, observeChanges, filterParams };
+export { pixify, filterParams };
