@@ -1,33 +1,62 @@
-import animate from "animateplus";
+// Including the  WebAnimations API polyfill
+import "web-animations-js/web-animations-next.min";
+import { AST_Node } from "terser";
 
-const params = new Map()
-  .set("el", "div")
-  .set("translateX", 200)
-  .set("complete", () => animate(params.set("delay", 1000)));
+const scroller = function(elem, delayBetweenLoops) {
+  let height, parentHeight, heightRatio, initialOffset, finalOffset;
+  let animationParameters = null;
+  let timingParameters = null;
+  let keyframeEffect = null;
+  let animator = null;
+  let speed = 70; //  px/sec
+  let distanceToCover = 0;
+  function update() {
+    if (animator) {
+      animator.finish();
+    }
+    height = elem.scrollHeight;
+    parentHeight = elem.parentElement.scrollHeight;
+    distanceToCover = height + parentHeight;
+    heightRatio = parentHeight / height;
+    initialOffset = 100;
+    finalOffset = -heightRatio * 100;
+    console.log(
+      `Offset: ${finalOffset}, parentHeight: ${parentHeight}, height: ${height}`
+    );
+    animationParameters = [
+      {
+        transform: `translate3D(0,100%, 0)`
+      },
+      {
+        transform: `translate3D(0,${finalOffset}%, 0)`
+      }
+    ];
+    timingParameters = {
+      duration: (1000 * distanceToCover) / speed,
+      iterations: 1
+    };
+    keyframeEffect = new KeyframeEffect(
+      elem,
+      animationParameters,
+      timingParameters
+    );
 
-animate(params);
-
-const movieTitlesScroll =  (_elem, _delay) => {
-  const elem = _elem;
-  const delay = _delay;
-  let height, parentHeight, ratio;
-
-  function init(){
-    height = elem.offsetHeight;
-    parentHeight = elem.parentElement.offsetHeight;
-    ratio = parentHeight / height;
+    animator = new Animation(keyframeEffect, document.timeline);
+    animator.finished.then(() => {
+      setTimeout(() => {
+        animator.play();
+      }, 3000);
+    });
+    // animator.onfinish = function() {
+    //   animator.cancel();
+    //   setTimeout(() => {
+    //     animator.play();
+    //   }, 3000);
+    // };
+    animator.play();
   }
-  function scroll(){
-    animate({
-      elements: elem,
-      duration: 10000,
-      easing: "linear",
-      transform: ["translateY(100%)", `translateY(${(-ratio)*100}%)`],
-    }).then( params => {
-      setTimeout( scroll, delay )
-    })
-  }
-  return { init, scroll };
-}
+  setTimeout(update, 0);
+  return update;
+};
 
-export default movieTitlesScroll;
+export default scroller;

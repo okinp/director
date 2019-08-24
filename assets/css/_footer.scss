@@ -4,4 +4,116 @@ footer {
   background-color: $yellow;
   padding: 35px 39px 34px 39px;
   margin-left: auto;
+  position: relative;
+  > h3 {
+    margin-top: 3px;
+    font-size: 40px;
+    font-weight: 700;
+  }
+  > .email {
+    margin-top: 14px;
+    font-size: 17px;
+    text-transform: uppercase;
+  }
+
+  .scroll-to-top {
+    position: absolute;
+    right: 39px;
+    top: 35px;
+    cursor: pointer;
+    display: inline-block;
+    > object {
+      pointer-events: none;
+    }
+  }
+  > .cta {
+    font-size: 25px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    width: 222px;
+    display: block;
+    color: black;
+    line-height: 33px;
+    margin-top: 44px;
+    &:hover,
+    &:active,
+    &:focus {
+      color: black;
+    }
+    > span {
+      display: inline-block;
+      line-height: 1;
+      border-bottom: 1px solid black;
+    }
+  }
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  right: 39px;
+  bottom: 34px;
+  left: 39px;
+}
+
+.social {
+  display: flex;
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 2;
+}
+
+.social__link {
+  display: block;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > object {
+    position: relative;
+    pointer-events: none;
+  }
+  &:not(:last-of-type) {
+    margin-right: 5px;
+  }
+  &:nth-of-type(1) {
+    > object {
+      // linked-in logo appears centered when off
+      bottom: 2px;
+      left: 1px;
+    }
+  }
+}
+
+.footer__legal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer__terms {
+  width: 307px;
+  display: flex;
+  justify-content: space-between;
+  > a {
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+    &:hover,
+    &:visited,
+    &:active {
+      text-decoration: none;
+    }
+  }
+}
+
+.copyright {
+  font-size: 17px;
 }

@@ -1,64 +1,64 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,600i,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,600i,700&display=swap");
 html {
-	font-size: 62.5%;
-	body {
-		font-family: $montserrat;
-		color: black;
-		min-height: 100vh;
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6 {
-			margin: 0;
-		}
+  font-size: 62.5%;
+  body {
+    font-family: $montserrat;
+    color: black;
+    min-height: 100vh;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+    }
 
-		h1 {
-			font-size: 6rem;
-			font-family: $montserrat;
-			font-weight: 400;
-			line-height: 6.5rem;
-			color: white;
-			position: relative;
-			// transform: translate(-200%);
-		}
+    h1 {
+      font-size: 6rem;
+      font-family: $montserrat;
+      font-weight: 400;
+      line-height: 6.5rem;
+      color: white;
+      position: relative;
+      // transform: translate(-200%);
+    }
 
-		h2 {
-			font-size: 5rem;
-			font-family: $montserrat;
-			font-weight: 400;
-			color: black;
-			position: relative;
-			transform: translate(-200%);
-		}
+    h2 {
+      font-size: 5rem;
+      font-family: $montserrat;
+      font-weight: 400;
+      color: black;
+      position: relative;
+      transform: translate(-200%);
+    }
 
-		h3 {
-			font-size: 4rem;
-			font-family: $montserrat;
-			font-weight: 400;
-		}
+    h3 {
+      font-size: 4rem;
+      font-family: $montserrat;
+      font-weight: 700;
+    }
 
-		h4 {
-			font-size: 3rem;
-		}
+    h4 {
+      font-size: 3rem;
+    }
 
-		h5 {
-			font-size: 2rem;
-			color: black;
-		}
+    h5 {
+      font-size: 2rem;
+      color: black;
+    }
 
-		h6 {
-			font-size: 1.3rem;
-			color: black;
-		}
+    h6 {
+      font-size: 1.3rem;
+      color: black;
+    }
 
-		p {
-			font-size: 1.4rem;
-			color: $gray;
-			font-family: "Montserrat", sans-serif;
-			font-weight: 400;
-			color: $gray;
-		}
-	}
+    p {
+      font-size: 1.4rem;
+      color: $gray;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 400;
+      color: $gray;
+    }
+  }
 }

@@ -126,7 +126,7 @@ nav {
   }
 }
 
-.terms {
+.nav__terms {
   list-style-type: none;
   position: absolute;
   left: 57px;
@@ -158,26 +158,28 @@ nav {
 
 .navlist__item {
   text-align: center;
-  > a, > a:hover, a:visited {
+  > a,
+  > a:hover,
+  a:visited {
     text-decoration: none;
   }
   > a {
-      display: inline-block;
-      // @include text-outline;
-      -webkit-text-stroke: 1px black;
-      text-stroke: 1px black;
-      font-family: Montserrat;
-      font-size: 80px;
-      font-weight: 700;
-      line-height: 85px;
-      text-transform: uppercase;
-      color: #999999;
-      &:hover {
-        color: $yellow;
-        // @include text-outline($yellow, 1px);
-        -webkit-text-stroke: 1px $yellow;
-        text-stroke: 1px $yellow;
-      }
+    display: inline-block;
+    // @include text-outline;
+    -webkit-text-stroke: 1px black;
+    text-stroke: 1px black;
+    font-family: Montserrat;
+    font-size: 80px;
+    font-weight: 700;
+    line-height: 85px;
+    text-transform: uppercase;
+    color: #999999;
+    &:hover {
+      color: $yellow;
+      // @include text-outline($yellow, 1px);
+      -webkit-text-stroke: 1px $yellow;
+      text-stroke: 1px $yellow;
+    }
   }
   > ul {
     list-style-type: none;
@@ -193,7 +195,9 @@ nav {
       &:hover {
         color: $yellow;
       }
-      > a, > a:hover, a:visited {
+      > a,
+      > a:hover,
+      a:visited {
         text-decoration: none;
         color: inherit;
       }

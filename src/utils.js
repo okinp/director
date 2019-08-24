@@ -1,18 +1,18 @@
 import { OldFilmFilter } from "@pixi/filter-old-film";
-import { RGBSplitFilter } from "@pixi/filter-rgb-split";
 import { Application, Container, Loader, Sprite, Ticker } from "pixi.js";
 
 const filterParams = {
   noise: 0.23,
   scratchDensity: 3.67,
   noiseSize: 0.16,
-  sepia: 0
+  sepia: 0.35
 };
 
 const createPixiInstance = function(elem) {
   const app = new Application(elem.dataset.width, elem.dataset.height, {
     transparent: true,
-    autoStart: false
+    autoStart: false,
+    resizeTo: elem.parentElement
   });
   let tkr = Ticker.shared;
   tkr.autoStart = false;

@@ -2790,11 +2790,6 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.0.tgz#8d8fdc73977cb04104721cb53666c1ca64cd328b"
 
-gsap@^2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/gsap/-/gsap-2.1.3.tgz#c63ee3a50f0b7dc3b46ed0845bb0f09049feb944"
-  integrity sha512-8RFASCqi2FOCBuv7X4o7M6bLdy+1hbR0azg+MG7zz+EVsI+OmJblYsTk0GEepQd2Jg/ItMPiVTibF7r3EVxjZQ==
-
 handle-thing@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-2.0.0.tgz#0e039695ff50c93fc288557d696f3c1dc6776754"
@@ -5926,6 +5921,11 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   dependencies:
     minimalistic-assert "^1.0.0"
 
+web-animations-js@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/web-animations-js/-/web-animations-js-2.3.2.tgz#a51963a359c543f97b47c7d4bc2d811f9fc9e153"
+  integrity sha512-TOMFWtQdxzjWp8qx4DAraTWTsdhxVSiWa6NkPFSaPtZ1diKUxTn4yTix73A1euG1WbSOMMPcY51cnjTIHrGtDA==
+
 webpack-cli@^3.3.0:
   version "3.3.6"
   resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.3.6.tgz#2c8c399a2642133f8d736a359007a052e060032c"
@@ -6146,7 +6146,3 @@ yargs@13.2.4:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^13.1.0"
-
-zingtouch@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/zingtouch/-/zingtouch-1.0.6.tgz#456cf2b0a69f91a5ffbd8a83b18033c671f1096d"
