@@ -21,7 +21,7 @@ import "images/social-imdb.svg";
 import "images/arrow-up.svg";
 
 let el = {};
-let updateScrollingParams;
+let scrollingTitles = null;
 function setupEvents() {
   // Test via a getter in the options object to see if the passive property is accessed
   var supportsPassive = false;
@@ -68,7 +68,8 @@ function setupEvents() {
   };
   window.onresize = throttle(
     () => {
-      updateScrollingParams();
+      scrollingTitles.stop();
+      scrollingTitles.start();
     },
     100,
     { trailing: true }
@@ -201,16 +202,10 @@ function setupCarousel() {
   });
 }
 
-// window.onload = function() {
-//   alert("yes");
-//   setupEvents();
-//   setupCarousel();
-//   scroller(el.intro.rollingTitles, 2200);
-// };
-
 setupEvents();
 setupCarousel();
-updateScrollingParams = scroller(el.intro.rollingTitles, 5000);
+scrollingTitles = scroller(el.intro.rollingTitles, 3000, 70);
+scrollingTitles.start();
 
 if (module.hot) {
   module.hot.accept();

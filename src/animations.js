@@ -1,61 +1,54 @@
-// Including the  WebAnimations API polyfill
-require("web-animations-js/web-animations-next.min");
-require("web-animations-js/src/web-animations-bonus-cancel-events");
-const scroller = function(elem, delayBetweenLoops) {
+import { default as Animate, stop as Stop, delay as Delay } from "animateplus";
+
+const scroller = function(elem, delayBetweenLoops, scrollingSpeed) {
   let height, parentHeight, heightRatio, initialOffset, finalOffset;
-  let animationParameters = null;
-  let timingParameters = null;
-  let keyframeEffect = null;
-  let animator = null;
-  let speed = 70; //  px/sec
   let distanceToCover = 0;
+  let stopped = true;
+  let timeoutHandler = null;
+
   function update() {
-    if (animator) {
-      animator.finish();
-    }
     height = elem.scrollHeight;
     parentHeight = elem.parentElement.scrollHeight;
     distanceToCover = height + parentHeight;
     heightRatio = parentHeight / height;
     initialOffset = 100;
     finalOffset = -heightRatio * 100;
-    console.log(
-      `Offset: ${finalOffset}, parentHeight: ${parentHeight}, height: ${height}`
-    );
-    animationParameters = [
-      {
-        transform: `translate3D(0,100%, 0)`
-      },
-      {
-        transform: `translate3D(0,${finalOffset}%, 0)`
-      }
-    ];
-    timingParameters = {
-      duration: (1000 * distanceToCover) / speed,
-      iterations: 1
-    };
-    keyframeEffect = new KeyframeEffect(
-      elem,
-      animationParameters,
-      timingParameters
-    );
-
-    animator = new Animation(keyframeEffect, document.timeline);
-    animator.finished.then(() => {
-      setTimeout(() => {
-        animator.play();
-      }, 3000);
-    });
-    // animator.onfinish = function() {
-    //   animator.cancel();
-    //   setTimeout(() => {
-    //     animator.play();
-    //   }, 3000);
-    // };
-    animator.play();
   }
-  setTimeout(update, 0);
-  return update;
+
+  function play() {
+    Animate({
+      elements: elem,
+      easing: "linear",
+      duration: (1000 * distanceToCover) / scrollingSpeed,
+      loop: false,
+      transform: ["translateY(100%)", finalOffset]
+    }).then(() => {
+      if (stopped) {
+        clearTimeout(timeoutHandler);
+      } else {
+        timeoutHandler = setTimeout(play, delayBetweenLoops);
+      }
+    });
+  }
+
+  function start() {
+    setTimeout(() => {
+      stopped = false;
+      update();
+      play();
+    }, 0);
+  }
+
+  function stop() {
+    stopped = true;
+    Stop(elem);
+    elem.style.transform = "translateY(100%)";
+    if (timeoutHandler) {
+      clearTimeout(timeoutHandler);
+    }
+  }
+
+  return { start, stop, update };
 };
 
 export default scroller;
