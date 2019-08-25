@@ -2,7 +2,7 @@ import animate from "animateplus";
 import throttle from "lodash/throttle";
 import Swiper from "swiper";
 import { disableScroll, enableScroll } from "src/disableScroll";
-import { pixify, filterParams } from "src/utils";
+import { pixify, filterParams, supportsPassive } from "src/utils";
 import scroller from "src/animations";
 
 import "css/main-entry";
@@ -19,53 +19,46 @@ import "images/social-linkedin.svg";
 import "images/social-vimeo.svg";
 import "images/social-imdb.svg";
 import "images/arrow-up.svg";
+import "images/cursor.svg.png";
+import "images/cursor-drag.svg.png";
 
-let el = {};
 let scrollingTitles = null;
+let el = {
+  body: document.querySelector("body"),
+  header: {
+    el: document.querySelector("header"),
+    burger: document.querySelector(".burger-button"),
+    navigation: document.querySelector("nav")
+  },
+  intro: {
+    el: document.querySelector(".intro"),
+    video: {
+      shrink: document.querySelector(".close-expanded-video"),
+      expand: document.querySelector(".expand")
+    },
+    bars: [...document.querySelectorAll(".bar")],
+    rollingTitles: document.querySelector(".video-text-scroll"),
+    scrollDownButton: document.querySelector(".scroll-down")
+  },
+  portfolio: {
+    el: document.querySelector(".portfolio"),
+    counter: {
+      start: document.querySelector(".counter__start"),
+      stop: document.querySelector(".counter__stop"),
+      track: document.querySelector(".counter__track")
+    },
+    slides: [...document.querySelectorAll(".portfolio__item")]
+  },
+  scrollToTop: document.querySelector(".scroll-to-top")
+};
+
 function setupEvents() {
-  // Test via a getter in the options object to see if the passive property is accessed
-  var supportsPassive = false;
-  try {
-    var opts = Object.defineProperty({}, "passive", {
-      get: function() {
-        supportsPassive = true;
-      }
-    });
-    window.addEventListener("testPassive", null, opts);
-    window.removeEventListener("testPassive", null, opts);
-  } catch (e) {}
   //
-  el = {
-    body: document.querySelector("body"),
-    header: {
-      el: document.querySelector("header"),
-      burger: document.querySelector(".burger-button"),
-      navigation: document.querySelector("nav")
-    },
-    intro: {
-      el: document.querySelector(".intro"),
-      video: {
-        shrink: document.querySelector(".close-expanded-video"),
-        expand: document.querySelector(".expand")
-      },
-      bars: [...document.querySelectorAll(".bar")],
-      rollingTitles: document.querySelector(".video-text-scroll"),
-      scrollDownButton: document.querySelector(".scroll-down")
-    },
-    portfolio: {
-      el: document.querySelector(".portfolio"),
-      counter: {
-        start: document.querySelector(".counter__start"),
-        stop: document.querySelector(".counter__stop"),
-        track: document.querySelector(".counter__track")
-      },
-      slides: [...document.querySelectorAll(".portfolio__item")]
-    },
-    scrollToTop: document.querySelector(".scroll-to-top")
-  };
+
   window.onbeforeunload = function() {
     window.scrollTo(0, 0);
   };
+
   window.onresize = throttle(
     () => {
       scrollingTitles.stop();
@@ -89,11 +82,10 @@ function setupEvents() {
       }
       return false;
     },
-    supportsPassive ? { passive: true } : false
+    supportsPassive
   );
 
   el.intro.video.expand.addEventListener("mousedown", evt => {
-    console.log(evt);
     el.intro.bars.forEach(b => b.classList.toggle("hide"));
     el.body.classList.toggle("fullscreen");
     window.scrollTo(0, 0);
@@ -120,7 +112,7 @@ function setupEvents() {
       });
       return false;
     },
-    supportsPassive ? { passive: true } : false
+    supportsPassive
   );
 
   el.scrollToTop.addEventListener(
@@ -135,7 +127,7 @@ function setupEvents() {
       });
       return false;
     },
-    supportsPassive ? { passive: true } : false
+    supportsPassive
   );
 }
 
@@ -155,6 +147,12 @@ function setupCarousel() {
 
     el.portfolio.counter.stop.innerHTML = `0${numSlides}`;
 
+    // set filtering params to 0 for initial slide
+    pixiArray[0].stage.children[0].filters[0].noise = 0;
+    pixiArray[0].stage.children[0].filters[0].scratchDensity = 0;
+    pixiArray[0].stage.children[0].filters[0].noiseSize = 0;
+    pixiArray[0].stage.children[0].filters[0].sepia = 0;
+
     swiper.on("progress", a => {
       let width = track.clientWidth;
       let gradientStop = (100 * (1 + (numSlides - 1) * a)) / numSlides;
@@ -166,9 +164,12 @@ function setupCarousel() {
     swiper.on("transitionStart", function() {
       previous = current;
       current = this.activeIndex;
+      console.log("transition start: ", current, " ", previous);
     });
 
     swiper.on("transitionEnd", function() {
+      if (current === previous) return;
+      console.log("transition end: ", current, " ", previous);
       el.portfolio.counter.start.innerHTML = `0${current + 1}`;
       const currentPixiApp = pixiArray[current].stage.children[0].filters[0];
       const previousPixiApp = pixiArray[previous].stage.children[0].filters[0];
@@ -204,7 +205,7 @@ function setupCarousel() {
 
 setupEvents();
 setupCarousel();
-scrollingTitles = scroller(el.intro.rollingTitles, 3000, 70);
+scrollingTitles = scroller(el.intro.rollingTitles, 3000, 130);
 scrollingTitles.start();
 
 if (module.hot) {

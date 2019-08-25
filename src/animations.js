@@ -4,7 +4,7 @@ const scroller = function(elem, delayBetweenLoops, scrollingSpeed) {
   let height, parentHeight, heightRatio, initialOffset, finalOffset;
   let distanceToCover = 0;
   let stopped = true;
-  let timeoutHandler = null;
+  let timeoutHandle = null;
 
   function update() {
     height = elem.scrollHeight;
@@ -16,6 +16,10 @@ const scroller = function(elem, delayBetweenLoops, scrollingSpeed) {
   }
 
   function play() {
+    if (stopped) {
+      clearTimeout(timeoutHandle);
+      timeoutHandle = null;
+    }
     Animate({
       elements: elem,
       easing: "linear",
@@ -23,11 +27,7 @@ const scroller = function(elem, delayBetweenLoops, scrollingSpeed) {
       loop: false,
       transform: ["translateY(100%)", finalOffset]
     }).then(() => {
-      if (stopped) {
-        clearTimeout(timeoutHandler);
-      } else {
-        timeoutHandler = setTimeout(play, delayBetweenLoops);
-      }
+      timeoutHandle = setTimeout(play, delayBetweenLoops);
     });
   }
 
@@ -43,8 +43,9 @@ const scroller = function(elem, delayBetweenLoops, scrollingSpeed) {
     stopped = true;
     Stop(elem);
     elem.style.transform = "translateY(100%)";
-    if (timeoutHandler) {
-      clearTimeout(timeoutHandler);
+    if (timeoutHandle) {
+      clearTimeout(timeoutHandle);
+      timeoutHandle = null;
     }
   }
 

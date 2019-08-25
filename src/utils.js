@@ -17,15 +17,13 @@ const createPixiInstance = function(elem) {
   let tkr = Ticker.shared;
   tkr.autoStart = false;
   tkr.stop();
-  let rafId = null;
+  let rafHandle = null;
   function run(timestamp) {
-    if (rafId) {
-      cancelAnimationFrame(rafId);
-      console.log("return");
+    if (rafHandle) {
+      cancelAnimationFrame(rafHandle);
       return;
     }
-    console.log("request");
-    rafId = requestAnimationFrame(run);
+    rafHandle = requestAnimationFrame(run);
     tkr.update(timestamp);
   }
   run(0);
@@ -65,4 +63,19 @@ const pixify = function(selector) {
   return Promise.all(pixiPromises);
 };
 
-export { pixify, filterParams };
+let supportsPassive = (function() {
+  // Test via a getter in the options object to see if the passive property is accessed
+  let supports = false;
+  try {
+    let opts = Object.defineProperty({}, "passive", {
+      get: function() {
+        supports = true;
+      }
+    });
+    window.addEventListener("testPassive", null, opts);
+    window.removeEventListener("testPassive", null, opts);
+  } catch (e) {}
+  return supports ? { passive: true } : false;
+})();
+
+export { pixify, filterParams, supportsPassive };

@@ -10,7 +10,7 @@
 }
 
 @mixin cursor {
-  cursor: url("/images/cursor.png") 27 27, auto;
+  cursor: url("/images/cursor.svg.png") 32 32, auto;
 }
 
 @mixin text-outline($color: black, $width: 1px) {

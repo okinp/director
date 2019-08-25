@@ -89,7 +89,7 @@ module.exports = () => ({
         ]
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
+        test: /\.(jpe?g|png|gif|svg|cur)$/i,
         exclude: [/\.*\/fonts/i],
         use: [
           {

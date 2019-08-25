@@ -53,6 +53,7 @@ footer {
 .footer-bottom {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   position: absolute;
   right: 39px;
   bottom: 34px;
