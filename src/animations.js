@@ -1,4 +1,4 @@
-import { default as Animate, stop as Stop, delay as Delay } from "animateplus";
+import { default as Animate, stop as Stop } from "animateplus";
 
 const scroller = function(elem, delayBetweenLoops, scrollingSpeed) {
   let height, parentHeight, heightRatio, initialOffset, finalOffset;
