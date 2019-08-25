@@ -1,7 +1,6 @@
 // Including the  WebAnimations API polyfill
-import "web-animations-js/web-animations-next.min";
-import { AST_Node } from "terser";
-
+require("web-animations-js/web-animations-next.min");
+require("web-animations-js/src/web-animations-bonus-cancel-events");
 const scroller = function(elem, delayBetweenLoops) {
   let height, parentHeight, heightRatio, initialOffset, finalOffset;
   let animationParameters = null;
