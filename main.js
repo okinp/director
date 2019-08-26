@@ -23,35 +23,39 @@ import "images/cursor.svg.png";
 import "images/cursor-drag.svg.png";
 
 let scrollingTitles = null;
-let el = {
-  body: document.querySelector("body"),
-  header: {
-    el: document.querySelector("header"),
-    burger: document.querySelector(".burger-button"),
-    navigation: document.querySelector("nav")
-  },
-  intro: {
-    el: document.querySelector(".intro"),
-    video: {
-      shrink: document.querySelector(".close-expanded-video"),
-      expand: document.querySelector(".expand"),
-      el: document.querySelector(".intro > .content > img")
+let el = null;
+
+function getElementsObject() {
+  el = {
+    body: document.querySelector("body"),
+    header: {
+      el: document.querySelector("header"),
+      burger: document.querySelector(".burger-button"),
+      navigation: document.querySelector("nav")
     },
-    bars: [...document.querySelectorAll(".bar")],
-    rollingTitles: document.querySelector(".video-text-scroll"),
-    scrollDownButton: document.querySelector(".scroll-down")
-  },
-  portfolio: {
-    el: document.querySelector(".portfolio"),
-    counter: {
-      start: document.querySelector(".counter__start"),
-      stop: document.querySelector(".counter__stop"),
-      track: document.querySelector(".counter__track")
+    intro: {
+      el: document.querySelector(".intro"),
+      video: {
+        shrink: document.querySelector(".close-expanded-video"),
+        expand: document.querySelector(".expand"),
+        el: document.querySelector(".intro > .content > img")
+      },
+      bars: [...document.querySelectorAll(".bar")],
+      rollingTitles: document.querySelector(".video-text-scroll"),
+      scrollDownButton: document.querySelector(".scroll-down")
     },
-    slides: [...document.querySelectorAll(".portfolio__item")]
-  },
-  scrollToTop: document.querySelector(".scroll-to-top")
-};
+    portfolio: {
+      el: document.querySelector(".portfolio"),
+      counter: {
+        start: document.querySelector(".counter__start"),
+        stop: document.querySelector(".counter__stop"),
+        track: document.querySelector(".counter__track")
+      },
+      slides: [...document.querySelectorAll(".portfolio__item")]
+    },
+    scrollToTop: document.querySelector(".scroll-to-top")
+  };
+}
 
 function setupEvents() {
   //
@@ -209,7 +213,7 @@ const animateIntro = async () => {
 
   await animate({
     easing: "linear",
-    delay: 400,
+    delay: 600,
     duration: 1000,
     change: p => {
       el.intro.video.el.style.opacity = p;
@@ -234,6 +238,7 @@ const animateIntro = async () => {
 };
 
 window.onload = () => {
+  getElementsObject();
   animateIntro();
   setupEvents();
   setupCarousel();
