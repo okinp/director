@@ -214,7 +214,7 @@ const animateIntro = async () => {
   await animate({
     easing: "linear",
     delay: 600,
-    duration: 1000,
+    duration: 1500,
     change: p => {
       el.intro.video.el.style.opacity = p;
     }

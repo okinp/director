@@ -20,7 +20,12 @@
 
 @mixin media($res) {
   @if mobile == $res {
-    @media only screen and (max-width: $tablet -1) {
+    @media only screen and (max-width: $mobile-lg - 1px) {
+      @content;
+    }
+  }
+  @if mobile-large == $res {
+    @media only screen and (min-width: $mobile-lg) {
       @content;
     }
   }

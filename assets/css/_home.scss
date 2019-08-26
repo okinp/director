@@ -23,6 +23,10 @@
       top: 40px;
       left: 50%;
       font-size: 51px;
+      @include media(mobile) {
+        font-size: 40px;
+        top: 21px;
+      }
       transform: translateX(-50%);
       cursor: pointer;
       z-index: 10;
@@ -63,6 +67,20 @@
     text-transform: uppercase;
     grid-column: 4 / 10;
   }
+  @include media(mobile) {
+    grid-gap: 5px;
+    column-gap: 5px;
+    > h1 {
+      font-size: 40px;
+      line-height: 55px;
+      grid-column: 1 / -1;
+    }
+    > p {
+      font-size: 18px;
+      line-height: 33px;
+      grid-column: 2 / 12;
+    }
+  }
 }
 
 .bottom-bar {
@@ -70,6 +88,9 @@
   bottom: 0;
   left: 0;
   height: 124px;
+  @include media(mobile) {
+    height: 62px;
+  }
   width: 100%;
   background-color: black;
   transform: translateX(-100%);
@@ -94,6 +115,9 @@
     height: 26px;
     position: absolute;
     top: 48px;
+    @include media(mobile) {
+      top: 18px;
+    }
     left: 50%;
     transform: translateX(-50%);
     // color: $yellow;
@@ -110,6 +134,11 @@
     position: absolute;
     right: 58px;
     top: 52px;
+    @include media(mobile) {
+      top: 19px;
+      right: 15px;
+      font-size: 15px;
+    }
     &:after {
       content: "";
       position: absolute;
@@ -169,6 +198,9 @@
     position: absolute;
     transform: translateX(-50%);
     bottom: -67px;
+    @include media(mobile) {
+      bottom: -38px;
+    }
     &:active,
     &:hover {
       text-decoration: none;
@@ -178,10 +210,14 @@
       font-size: 55px;
       font-weight: 400;
       line-height: 70px;
-      max-width: 100%;
+      max-width: 100vw;
       width: 750px;
       text-align: center;
       overflow: hidden;
+      @include media(mobile) {
+        font-size: 30px;
+        line-height: 1;
+      }
       > span {
         display: inline-block;
         transform: translateY(100%);
@@ -193,6 +229,10 @@
       color: white;
       text-transform: uppercase;
       font-size: 17px;
+      @include media(mobile) {
+        font-size: 14px;
+        margin-top: 10px;
+      }
       font-weight: 700;
       width: 100%;
       text-align: center;
@@ -210,6 +250,7 @@
     display: inline-block;
     > canvas {
       position: relative;
+      max-width: 95vw;
     }
     &:after {
       content: "";
@@ -262,6 +303,9 @@
   position: absolute;
   left: 59px;
   bottom: 64px;
+  @include media(mobile) {
+    left: 15px;
+  }
   > span {
     display: inline-block;
     color: #fbee30;
@@ -277,10 +321,14 @@
 [class^="counter__s"] {
   font-size: 17px;
   font-weight: 500;
+  @include media(mobile) {
+    font-size: 15px;
+  }
 }
 
 .about,
 .services {
   background-color: black;
   @include cursor;
+  display: none;
 }
