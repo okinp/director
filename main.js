@@ -34,7 +34,8 @@ let el = {
     el: document.querySelector(".intro"),
     video: {
       shrink: document.querySelector(".close-expanded-video"),
-      expand: document.querySelector(".expand")
+      expand: document.querySelector(".expand"),
+      el: document.querySelector(".intro > .content > img")
     },
     bars: [...document.querySelectorAll(".bar")],
     rollingTitles: document.querySelector(".video-text-scroll"),
@@ -203,10 +204,40 @@ function setupCarousel() {
   });
 }
 
-setupEvents();
-setupCarousel();
-scrollingTitles = scroller(el.intro.rollingTitles, 3000, 130);
-scrollingTitles.start();
+const animateIntro = async () => {
+  scrollingTitles = scroller(el.intro.rollingTitles, 3000, 130);
+
+  await animate({
+    easing: "linear",
+    delay: 400,
+    duration: 1000,
+    change: p => {
+      el.intro.video.el.style.opacity = p;
+    }
+  });
+
+  await animate({
+    elements: el.intro.bars,
+    easing: "in-out-quintic",
+    duration: 1500,
+    transform: index => [`translate(${100 - index * 200}%)`, 0],
+    opacity: [0, 1]
+  });
+
+  await animate({
+    elements: el.intro.video.shrink,
+    duration: 100,
+    opacity: [0, 1]
+  });
+
+  await scrollingTitles.start();
+};
+
+window.onload = () => {
+  animateIntro();
+  setupEvents();
+  setupCarousel();
+};
 
 if (module.hot) {
   module.hot.accept();

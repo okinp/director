@@ -6,6 +6,7 @@ header {
   left: 0;
   z-index: 100;
   background-color: black;
+  transform: translateX(100%);
   &.hide {
     display: none;
   }
