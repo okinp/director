@@ -1,57 +1,56 @@
 footer {
   height: 337px;
-  width: 100vw;
-  @include media(desktop) {
-    width: 50vw;
+  width: 100%;
+  @include media(mobile-large) {
+    width: 50%;
   }
   background-color: $yellow;
   padding: 35px 39px;
-  @include media(mobile) {
-    // width: 100vw;
-    padding: 15px 15px;
-  }
+  // @include media(mobile) {
+  //   padding: 15px 15px;
+  // }
   margin-left: auto;
   position: relative;
   > h3 {
+    font-size: 28px;
     margin-top: 3px;
-    font-size: 40px;
     font-weight: 700;
-    @include media(mobile) {
-      font-size: 28px;
-      display: inline-block;
+    display: inline-block;
+    @include media(mobile-large) {
+      font-size: 40px;
+      display: initial;
     }
   }
   > .email {
     font-size: 17px;
     text-transform: uppercase;
-    @include media(mobile) {
-      font-size: 15px;
-      display: inherit;
-    }
+    font-weight: normal;
+    // @include media(mobile) {
+    //   font-size: 15px;
+    //   display: inherit;
+    // }
   }
 
   .scroll-to-top {
     position: absolute;
     right: 39px;
     top: 35px;
-    @include media(mobile) {
-      right: 15px;
-      top: 15px;
-    }
+    // @include media(mobile) {
+    //   right: 15px;
+    //   top: 15px;
+    // }
     cursor: pointer;
     display: inline-block;
     > object {
       pointer-events: none;
-      @include media(mobile) {
-        width: 30px;
-      }
+      // @include media(mobile) {
+      //   width: 30px;
+      // }
     }
   }
   > .cta {
     font-size: 25px;
     font-weight: 700;
-    // display: flex;
-    // flex-direction: column;1
     text-decoration: none;
     width: 222px;
     display: block;
@@ -68,12 +67,12 @@ footer {
       line-height: 1;
       border-bottom: 1px solid black;
     }
-    @include media(mobile) {
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      font-size: 23px;
-    }
+    // @include media(mobile) {
+    //   margin-left: auto;
+    //   margin-right: auto;
+    //   text-align: center;
+    //   font-size: 23px;
+    // }
   }
 }
 
@@ -85,22 +84,22 @@ footer {
   right: 39px;
   bottom: 34px;
   left: 39px;
-  @media only screen and (max-width: 1390px) {
-    flex-direction: column;
-  }
-  @include media(mobile) {
-    right: 20px;
-    left: 20px;
-    bottom: 25px;
-    justify-content: center;
-  }
+  // @media only screen and (max-width: 1390px) {
+  //   flex-direction: column;
+  // }
+  // @include media(mobile) {
+  //   right: 20px;
+  //   left: 20px;
+  //   bottom: 25px;
+  //   justify-content: center;
+  // }
 }
 
 .social {
   display: flex;
-  @include media(mobile) {
-    justify-content: center;
-  }
+  // @include media(mobile) {
+  //   justify-content: center;
+  // }
 }
 
 .social__link {
@@ -112,9 +111,9 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  @include media(mobile) {
-    margin-bottom: 10px;
-  }
+  // @include media(mobile) {
+  //   margin-bottom: 10px;
+  // }
   > object {
     position: relative;
     pointer-events: none;
@@ -135,35 +134,34 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 20px;
-  @include media(mobile) {
-    width: 100%;
-    margin-left: 0;
-  }
+  // @include media(mobile) {
+  //   width: 100%;
+  //   margin-left: 0;
+  // }
 }
 
 .footer__terms {
   width: 307px;
   display: flex;
   justify-content: space-between;
-  @include media(mobile) {
-    width: 100%;
-    justify-content: center;
-  }
+  // @include media(mobile) {
+  //   width: 100%;
+  //   justify-content: center;
+  // }
   > a {
     color: black;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    @include media(mobile) {
-      font-size: 13px;
-      &:nth-of-type(1) {
-        margin-right: 5px;
-      }
-      &:nth-of-type(2) {
-        margin-left: 5px;
-      }
-    }
+    // @include media(mobile) {
+    //   font-size: 13px;
+    //   &:nth-of-type(1) {
+    //     margin-right: 5px;
+    //   }
+    //   &:nth-of-type(2) {
+    //     margin-left: 5px;
+    //   }
+    // }
     display: inline-block;
     &:hover,
     &:visited,
@@ -175,8 +173,8 @@ footer {
 
 .copyright {
   font-size: 17px;
-  @include media(mobile) {
-    font-size: 13px;
-    text-align: center;
-  }
+  // @include media(mobile) {
+  //   font-size: 13px;
+  //   text-align: center;
+  // }
 }

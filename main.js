@@ -169,34 +169,24 @@ function setupCarousel() {
     swiper.on("transitionStart", function() {
       previous = current;
       current = this.activeIndex;
-      console.log("transition start: ", current, " ", previous);
     });
 
     swiper.on("transitionEnd", function() {
       if (current === previous) return;
-      console.log("transition end: ", current, " ", previous);
       el.portfolio.counter.start.innerHTML = `0${current + 1}`;
       const currentPixiApp = pixiArray[current].stage.children[0].filters[0];
       const previousPixiApp = pixiArray[previous].stage.children[0].filters[0];
 
-      const fadeOutFn = progress => {
-        currentPixiApp.noise = (1 - progress) * filterParams.noise;
-        currentPixiApp.scratchDensity =
-          (1 - progress) * filterParams.scratchDensity;
-        currentPixiApp.noiseSize = (1 - progress) * filterParams.noiseSize;
-        currentPixiApp.sepia = (1 - progress) * filterParams.sepia;
-      };
-
-      const fadeInFn = progress => {
-        previousPixiApp.noise = progress * filterParams.noise;
-        previousPixiApp.scratchDensity = progress * filterParams.scratchDensity;
-        previousPixiApp.noiseSize = progress * filterParams.noiseSize;
-        previousPixiApp.sepia = progress * filterParams.sepia;
+      const fadeFn = (pixiApp, progress) => {
+        pixiApp.noise = progress * filterParams.noise;
+        pixiApp.scratchDensity = progress * filterParams.scratchDensity;
+        pixiApp.noiseSize = progress * filterParams.noiseSize;
+        pixiApp.sepia = progress * filterParams.sepia;
       };
 
       const handleFilters = progress => {
-        fadeOutFn(progress);
-        fadeInFn(progress);
+        fadeFn(previousPixiApp, progress);
+        fadeFn(currentPixiApp, 1 - progress);
       };
 
       animate({
@@ -206,6 +196,29 @@ function setupCarousel() {
       });
     });
   });
+}
+
+function lookForElementsInView() {
+  let cb = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        console.log("In View");
+      } else {
+        console.log("Out of view");
+      }
+    });
+  };
+
+  let options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 1.0
+  };
+
+  let observer = new IntersectionObserver(cb, options);
+  document
+    .querySelectorAll("[data-observe]")
+    .forEach(el => observer.observe(el));
 }
 
 const animateIntro = async () => {
@@ -242,6 +255,7 @@ window.onload = () => {
   animateIntro();
   setupEvents();
   setupCarousel();
+  lookForElementsInView();
 };
 
 if (module.hot) {

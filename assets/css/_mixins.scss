@@ -10,7 +10,7 @@
 }
 
 @mixin cursor {
-  cursor: url("/images/cursor.svg.png") 32 32, auto;
+  cursor: url("/images/cursor.svg.png") 42 42, auto;
 }
 
 @mixin text-outline($color: black, $width: 1px) {
@@ -20,30 +20,30 @@
 
 @mixin media($res) {
   @if mobile == $res {
-    @media only screen and (max-width: $mobile-lg - 1px) {
+    @media only screen and (max-width: 480px) {
       @content;
     }
   }
   @if mobile-large == $res {
-    @media only screen and (min-width: $mobile-lg) {
+    @media only screen and (min-width: 481px) and (max-width: 767px) {
       @content;
     }
   }
 
   @if tablet == $res {
-    @media only screen and (min-width: $tablet) {
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
       @content;
     }
   }
 
   @if desktop == $res {
-    @media only screen and (min-width: $desktop) {
+    @media only screen and (min-width: 1025px) and (max-width: 1280px) {
       @content;
     }
   }
 
   @if wide == $res {
-    @media only screen and (min-width: $wide) {
+    @media only screen and (min-width: 1281px) {
       @content;
     }
   }
