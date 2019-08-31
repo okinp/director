@@ -75,6 +75,7 @@ header {
   flex-direction: column;
   justify-content: center;
   margin-left: auto;
+  position: relative;
   > span:not(.close) {
     display: block;
     width: 100%;
@@ -94,7 +95,7 @@ header {
     }
   }
   &.is-open {
-    position: absolute;
+    // position: absolute;
     z-index: 20;
     > span:not(.close) {
       visibility: hidden;
@@ -108,8 +109,7 @@ header {
       font-family: Montserrat;
       font-size: 17px;
       font-weight: 500;
-      left: 0;
-      transform: translateX(50%);
+      right: 0;
       &:after {
         content: "";
         display: block;
@@ -132,44 +132,41 @@ nav {
   display: none;
   &.is-open {
     display: flex;
-    justify-content: center;
-    position: fixed;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     background-color: $gray;
-  }
-}
-
-.nav__terms {
-  list-style-type: none;
-  position: absolute;
-  left: 57px;
-  bottom: 60px;
-  padding: 0;
-  > li {
-    color: black;
-    &:hover {
-      color: $yellow;
+    padding: 60px 58px;
+    font-size: 80px;
+    @media screen and (max-width: 1374px) {
+      font-size: 70px;
     }
-    > a,
-    > a:hover,
-    > a:visited {
-      text-decoration: none;
-      color: inherit;
-      font-family: $montserrat;
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 25px;
-      text-transform: uppercase;
+    @media screen and (max-width: 964px) {
+      font-size: 60px;
+    }
+    @media screen and (max-width: 687px) {
+      font-size: 50px;
+    }
+    @media screen and (max-width: 499px) {
+      font-size: 40px;
+      padding: 30px 28px;
     }
   }
 }
 .navlist {
-  margin-top: 107px;
+  position: absolute;
   list-style-type: none;
   padding: 0;
+  top: calc(50% - 47px);
+  transform: translateY(-50%);
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 1.0625;
 }
 
 .navlist__item {
@@ -185,9 +182,7 @@ nav {
     -webkit-text-stroke: 1px black;
     text-stroke: 1px black;
     font-family: Montserrat;
-    font-size: 80px;
-    font-weight: 700;
-    line-height: 85px;
+
     text-transform: uppercase;
     color: #999999;
     &:hover {
@@ -203,9 +198,9 @@ nav {
     margin: 14px 0 14px 0;
     > li {
       font-family: $montserrat;
-      font-size: 55px;
+      font-size: 0.6875em;
       font-weight: 400;
-      line-height: 60px;
+      line-height: 1.091;
       color: black;
       text-transform: uppercase;
       &:hover {
@@ -217,6 +212,35 @@ nav {
         text-decoration: none;
         color: inherit;
       }
+    }
+  }
+}
+
+.nav__terms {
+  list-style-type: none;
+  align-self: flex-start;
+  padding: 0;
+  font-size: 15px;
+  line-height: 25px;
+  position: relative;
+  left: 0;
+  bottom: -100%;
+  transform: translateY(-100%);
+  > li {
+    color: black;
+    &:hover {
+      color: $yellow;
+    }
+    > a,
+    > a:hover,
+    > a:visited {
+      text-decoration: none;
+      color: inherit;
+      font-family: $montserrat;
+
+      font-weight: 700;
+
+      text-transform: uppercase;
     }
   }
 }

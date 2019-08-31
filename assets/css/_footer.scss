@@ -1,51 +1,45 @@
 footer {
   height: 337px;
-  width: 100%;
-  @include media(mobile-large) {
-    width: 50%;
+  width: 50%;
+  @media screen and (max-width: 964px) {
+    width: 100%;
   }
   background-color: $yellow;
   padding: 35px 39px;
-  // @include media(mobile) {
-  //   padding: 15px 15px;
-  // }
   margin-left: auto;
   position: relative;
+  @media screen and (max-width: 499px) {
+    padding: 15px 10px;
+  }
   > h3 {
-    font-size: 28px;
+    font-size: 40px;
     margin-top: 3px;
     font-weight: 700;
-    display: inline-block;
-    @include media(mobile-large) {
-      font-size: 40px;
-      display: initial;
+    @media screen and (max-width: 499px) {
+      font-size: 28px;
     }
   }
   > .email {
     font-size: 17px;
     text-transform: uppercase;
     font-weight: normal;
-    // @include media(mobile) {
-    //   font-size: 15px;
-    //   display: inherit;
-    // }
+    @media screen and (max-width: 499px) {
+      font-size: 15px;
+    }
   }
 
   .scroll-to-top {
     position: absolute;
     right: 39px;
     top: 35px;
-    // @include media(mobile) {
-    //   right: 15px;
-    //   top: 15px;
-    // }
+    @media screen and (max-width: 499px) {
+      right: 10px;
+      top: 15px;
+    }
     cursor: pointer;
     display: inline-block;
     > object {
       pointer-events: none;
-      // @include media(mobile) {
-      //   width: 30px;
-      // }
     }
   }
   > .cta {
@@ -67,12 +61,26 @@ footer {
       line-height: 1;
       border-bottom: 1px solid black;
     }
-    // @include media(mobile) {
-    //   margin-left: auto;
-    //   margin-right: auto;
-    //   text-align: center;
-    //   font-size: 23px;
-    // }
+    @media screen and (max-width: 1374px) {
+      margin-top: 24px;
+      margin-bottom: 10px;
+    }
+    @media screen and (max-width: 964px) {
+      margin-top: 44px;
+      margin-bottom: 0;
+    }
+    @media screen and (max-width: 687px) {
+      margin-top: 24px;
+      margin-bottom: 10px;
+    }
+    @media screen and (max-width: 499px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      font-size: 20px;
+      margin-top: 64px;
+    }
   }
 }
 
@@ -84,22 +92,28 @@ footer {
   right: 39px;
   bottom: 34px;
   left: 39px;
-  // @media only screen and (max-width: 1390px) {
-  //   flex-direction: column;
-  // }
-  // @include media(mobile) {
-  //   right: 20px;
-  //   left: 20px;
-  //   bottom: 25px;
-  //   justify-content: center;
-  // }
+  @media screen and (max-width: 499px) {
+    left: 10px;
+    right: 10px;
+    bottom: 15px;
+  }
 }
 
 .social {
   display: flex;
-  // @include media(mobile) {
-  //   justify-content: center;
-  // }
+  @media screen and (max-width: 1374px) {
+    padding: 10px 0;
+  }
+  @media screen and (max-width: 964px) {
+    padding: 0;
+  }
+  @media screen and (max-width: 687px) {
+    padding: 10px 0;
+  }
+  @media screen and (max-width: 499px) {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .social__link {
@@ -111,9 +125,6 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  // @include media(mobile) {
-  //   margin-bottom: 10px;
-  // }
   > object {
     position: relative;
     pointer-events: none;
@@ -123,7 +134,7 @@ footer {
   }
   &:nth-of-type(1) {
     > object {
-      // linked-in logo appears centered when off
+      // linkedin logo appears centered when off
       bottom: 2px;
       left: 1px;
     }
@@ -134,34 +145,38 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  // @include media(mobile) {
-  //   width: 100%;
-  //   margin-left: 0;
-  // }
+  margin-left: 20px;
+  @media screen and (max-width: 1374px) {
+    margin-left: 0;
+    margin-right: 20px;
+  }
+  @media screen and (max-width: 964px) {
+    margin-right: 0;
+    margin-left: 20px;
+  }
+  @media screen and (max-width: 687px) {
+    margin-right: 20px;
+    margin-left: 0px;
+  }
+  @media screen and (max-width: 499px) {
+    margin: 0;
+    align-items: center;
+    width: 100%;
+  }
 }
 
 .footer__terms {
   width: 307px;
   display: flex;
   justify-content: space-between;
-  // @include media(mobile) {
-  //   width: 100%;
-  //   justify-content: center;
-  // }
   > a {
     color: black;
     text-decoration: none;
     font-size: 14px;
+    @media screen and (max-width: 499px) {
+      font-size: 12px;
+    }
     font-weight: 500;
-    // @include media(mobile) {
-    //   font-size: 13px;
-    //   &:nth-of-type(1) {
-    //     margin-right: 5px;
-    //   }
-    //   &:nth-of-type(2) {
-    //     margin-left: 5px;
-    //   }
-    // }
     display: inline-block;
     &:hover,
     &:visited,
@@ -173,8 +188,7 @@ footer {
 
 .copyright {
   font-size: 17px;
-  // @include media(mobile) {
-  //   font-size: 13px;
-  //   text-align: center;
-  // }
+  @media screen and (max-width: 499px) {
+    font-size: 14px;
+  }
 }

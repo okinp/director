@@ -1,0 +1,31 @@
+.more {
+  font-size: 17px;
+  @media screen and (max-width: 687px) {
+    font-size: 13px;
+  }
+  font-weight: 500;
+  color: $yellow;
+  position: relative;
+  text-decoration: underline;
+  text-underline-position: under;
+  padding-left: calc(60em / 17);
+  &:focus,
+  &:active,
+  &:visited {
+    text-decoration: none;
+    outline: 0;
+  }
+  > span:not(.more__label) {
+    color: $yellow;
+    font-size: calc(41em / 17);
+    position: absolute;
+    left: 0px;
+    bottom: 50%;
+    transform: translateY(50%);
+  }
+  > .more__label {
+    border-bottom: 1px solid;
+    line-height: 1.1;
+    display: inline-block;
+  }
+}
