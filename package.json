@@ -35,8 +35,10 @@
     "@pixi/filter-old-film": "^3.0.3",
     "@pixi/filter-rgb-split": "^3.0.3",
     "animateplus": "^2.1.1",
+    "lax.js": "^1.2.3",
     "lodash": "^4.17.15",
     "pixi.js": "^5.1.1",
+    "srraf": "^3.2.0",
     "swiper": "^4.5.0",
     "web-animations-js": "^2.3.2"
   }

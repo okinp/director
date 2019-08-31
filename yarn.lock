@@ -3420,6 +3420,11 @@ last-call-webpack-plugin@^3.0.0:
     lodash "^4.17.5"
     webpack-sources "^1.1.0"
 
+lax.js@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/lax.js/-/lax.js-1.2.3.tgz#ee19230a20f637f6bfd77281b1aa7a8d62172ad4"
+  integrity sha512-997ORcgFcL6Hag1QBe0KbNl9WEtm7okf9fLKvo/hv05CUSWEwsyXAtZLKOqsnbgcaJ6yHZUNtJUzMaplf78Z4w==
+
 lcid@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/lcid/-/lcid-2.0.0.tgz#6ef5d2df60e52f82eb228a4c373e8d1f397253cf"
@@ -5448,6 +5453,11 @@ split-string@^3.0.1, split-string@^3.0.2:
 sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
+
+srraf@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/srraf/-/srraf-3.2.0.tgz#098d70b11553aaf6258f800f8c2f8d43af143b33"
+  integrity sha512-AFDqLZzZgi9uiP7ncuJJqFsUxWBkJZWi3uLNTSnsSJMfnIYE7Fb2t1IGvM8ynqhpyV94TfCy7aKLrOteJq3+tw==
 
 ssr-window@^1.0.1:
   version "1.0.1"
