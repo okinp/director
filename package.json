@@ -39,7 +39,7 @@
     "lodash": "^4.17.15",
     "pixi.js": "^5.1.1",
     "srraf": "^3.2.0",
-    "swiper": "^4.5.0",
+    "swiper": "^6.5.1",
     "web-animations-js": "^2.3.2"
   }
 }
